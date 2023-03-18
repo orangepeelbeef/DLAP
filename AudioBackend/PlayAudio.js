@@ -116,6 +116,7 @@ export function updatePlaylist(option) {
       break;
     case 'input':
       audio = inputFiles[integer];
+      currentTrack = inputFiles[integer];
       break;
     case 'stop':
       audio = 'Not Playing';
