@@ -25,15 +25,16 @@ import { player } from '../AudioBackend/VoiceInitialization.js';
 const { djRole, ownerID } = JSON.parse(readFileSync('./config.json', 'utf-8'));
 
 export const votes = new Set();
-let nextCheck;
 
 async function commandCheck(interaction, bot) {
-  if (nextCheck) {
+   if (interaction.commandName === 'next') {
     await interaction.reply({ content: 'Playing next music' });
     player.stop();
     return await nextAudio(bot);
-  } else {
-    await previousAudio(bot, interaction);
+  } else if (interaction.commandName === 'previous') {
+    await interaction.reply({ content: 'Playing previous music' });
+    player.stop();
+    return await previousAudio(bot, interaction);
   }
 }
 
